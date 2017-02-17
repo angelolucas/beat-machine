@@ -8,4 +8,4 @@ Aumente o volume e crie seu som no #YasukeBeatMachine.
 - [André Maciel](http://blackmadre.com) - Ilustrações
 - [Dj Duh](https://soundcloud.com/dj-duhproducer) - Sound Designer
 
-Um projeto baseado no [108](http://martinwecke.de/108).
+### Um projeto baseado no [108](http://martinwecke.de/108) de [Martin Wecke](https://github.com/hatsumatsu)
