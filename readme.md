@@ -1,11 +1,10 @@
 # Emicida Yasuke  - Beat Machine
-## [emicida.com/beat-machine](https://emicida.com/beat-machine)
+Turn up the volume and create your sound in #YasukeBeatMachine.
+###[emicida.com/beat-machine](https://emicida.com/beat-machine)
 
-Aumente o volume e crie seu som no #YasukeBeatMachine. 
-
-### Créditos
+### Credits
 - [Ângelo Lucas](http://angelolucas.github.io) - Code
-- [André Maciel](http://blackmadre.com) - Ilustrações
+- [André Maciel](http://blackmadre.com) - Illustrations
 - [Dj Duh](https://soundcloud.com/dj-duhproducer) - Sound Designer
 
-### Um projeto baseado no [108](http://martinwecke.de/108) de [Martin Wecke](https://github.com/hatsumatsu)
+### A Forked project of [108](http://martinwecke.de/108) by [Martin Wecke](https://github.com/hatsumatsu)
