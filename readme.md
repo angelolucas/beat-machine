@@ -1,6 +1,6 @@
 # Emicida Yasuke  - Beat Machine
-Turn up the volume and create your sound in #YasukeBeatMachine.
-###[emicida.com/beat-machine](http://emicida.com/beat-machine)
+Turn up the volume and create your sound in # YasukeBeatMachine.
+### [emicida.com/beat-machine](http://emicida.com/beat-machine)
 
 ### Credits
 - [Ângelo Lucas](http://angelolucas.github.io) - Code
