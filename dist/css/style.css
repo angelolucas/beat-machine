@@ -116,84 +116,23 @@ html {
   bottom: 0;
   opacity: 0;
   background-color: black;
-  -webkit-transition-duration: 750ms;
-          transition-duration: 750ms;
-  -webkit-transition-property: opacity, -webkit-transform;
-          transition-property: opacity, transform;
-  -webkit-transition-timing-function: ease;
-          transition-timing-function: ease;
+  transition-duration: 750ms;
+  transition-property: opacity, -webkit-transform;
+  transition-property: opacity, transform;
+  transition-timing-function: ease;
 }
 .visible--intro .intro {
-  z-index: 1000;
+  z-index: 100;
   opacity: 1;
-  -webkit-transition: none;
-          transition: none;
-}
-.intro:after {
-  background: url('../img/intro.png') no-repeat center;
-  background-size: contain;
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  transition: none;
 }
 .intro-loading-bar {
-  -webkit-transition: 0.4s width;
-          transition: 0.4s width;
+  transition: 0.4s width;
   background: red;
   top: 0;
   position: absolute;
   left: 0;
   height: 5px;
-}
-.intro-top ul {
-  margin: 40px;
-  font-family: 'Eurostile', monospace;
-  font-size: 11px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  list-style: none;
-  padding: 0;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  letter-spacing: 0px;
-}
-.intro-top ul li.logo {
-  display: none;
-  width: 100%;
-  height: auto;
-}
-.intro-top ul li.yasuke div {
-  display: inline-block;
-}
-.intro-top ul li.japan div {
-  display: inline-block;
-}
-.intro-top ul li.japan span {
-  color: red;
-  display: inline-block;
-  margin: 0 -4px 0 0px;
-  font-size: 310%;
-  line-height: 0;
-  position: relative;
-  vertical-align: middle;
-  top: 3px;
-}
-.intro-top ul li.show div {
-  display: inline-block;
-}
-.intro-top ul li span {
-  font-family: 'New Rail Alphabet', monospace;
-  margin: 5px 0 0 53px;
-  display: block;
-  font-weight: bold;
-}
-.intro-top ul li span b {
-  float: right;
 }
 .intro-title {
   pointer-events: none;
@@ -207,83 +146,13 @@ html {
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
 }
-.intro-emicida-logo {
-  background: url('../img/emicida-logo.png');
-  background-repeat: no-repeat;
-  background-size: 35px;
-  width: 35px;
-  height: 35px;
-  position: absolute;
-  bottom: 40px;
-  left: 40px;
-}
-.intro-yasuke-logo {
-  background: url('../img/yasuke-logo.png');
-  background-repeat: no-repeat;
-  background-size: 18px;
-  width: 18px;
-  height: 108px;
-  position: absolute;
-  bottom: 40px;
-  right: 40px;
-}
-@media screen and (max-width: 730px) {
-  .intro-top ul li.yasuke div,
-  .intro-top ul li.japan div,
-  .intro-top ul li.show div {
-    display: block;
-  }
-  .intro-top ul li.show span {
-    margin-left: 0;
-  }
-}
-@media screen and (max-width: 530px) {
-  .intro-top ul {
-    margin-left: 20px;
-    margin-right: 20px;
-  }
-  .intro-top ul span {
-    margin: 5px 0 0;
-  }
-  .intro-top ul span b {
-    float: none;
-  }
-}
 @media screen and (max-width: 480px) {
   .intro:after {
     top: 20vh;
   }
-  .intro-top ul {
-    margin: 20px;
-    display: block;
-    overflow: hidden;
-  }
-  .intro-top ul li {
-    margin-bottom: 2vh;
-    float: left;
-  }
-  .intro-top ul li.logo {
-    display: block;
-    margin-bottom: 2vh;
-  }
-  .intro-top ul li.yasuke,
-  .intro-top ul li.japan {
-    display: none;
-  }
-  .intro-top ul li.show.second-show {
-    float: right;
-  }
   .intro-title {
     font-size: 70px;
     margin-top: 9vh;
-  }
-  .intro-emicida-logo {
-    bottom: 20px;
-    left: 20px;
-  }
-  .intro-yasuke-logo {
-    bottom: 20px;
-    right: 20px;
   }
 }
 a {
@@ -350,35 +219,14 @@ h4 > span {
   margin: 5px 40px;
   top: 0;
   right: 110px;
+  z-index: 101;
 }
 .title-container h1 {
   display: inline-block;
   margin: 0;
-  font-family: inherit;
   font-weight: 400;
   line-height: 1;
   font-size: 21px;
-  text-align: left;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 100%;
-  width: auto;
-}
-.title-container h1 span {
-  background: black;
-  padding: 5px 10px;
-  line-height: 1.5;
-}
-.title-container h1 span.username {
-  display: none;
-}
-.title-container h1 span.username.active {
-  padding-left: 0;
-  display: inline;
-}
-.title-container h1 span.username.active:before {
-  content: "/ ";
 }
 @media screen and (max-width: 656px) {
   .title-container {
@@ -388,23 +236,10 @@ h4 > span {
   .title-container h1 {
     display: inline;
     font-size: 12px;
-    white-space: normal;
-  }
-  .title-container h1 span {
-    padding: 2px 10px;
-  }
-  .title-container h1 span.emicida {
-    display: inline-block;
-    margin-bottom: -8px;
-  }
-  .title-container h1 span.username.active {
-    display: inline-block;
-    margin-top: -3px;
   }
 }
 .timeline {
-  -webkit-transition: 0.3s bottom;
-          transition: 0.3s bottom;
+  transition: 0.3s bottom;
   position: absolute;
   top: 40px;
   left: 40px;
@@ -423,8 +258,7 @@ h4 > span {
   bottom: -1px;
   right: -1px;
   z-index: 0;
-  -webkit-transition: opacity 750ms ease, height 300ms ease;
-          transition: opacity 750ms ease, height 300ms ease;
+  transition: opacity 750ms ease, height 300ms ease;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -470,8 +304,8 @@ h4 > span {
           align-items: center;
   -ms-flex-pack: distribute;
       justify-content: space-around;
-  -webkit-transition: 0.5s background-color, 0.3s opacity, 0.3s -webkit-transform;
-          transition: 0.5s background-color, 0.3s opacity, 0.3s transform;
+  transition: 0.5s background-color, 0.3s opacity, 0.3s -webkit-transform;
+  transition: 0.5s background-color, 0.3s opacity, 0.3s transform;
   background-color: transparent;
   background-repeat: no-repeat;
   background-size: contain;
@@ -504,13 +338,13 @@ h4 > span {
           transform: scale(1);
 }
 .timeline .timeline-wrapper .sample .step[data-id] .content.added {
-  -webkit-transition: 0s background-color, 0.1s opacity, 0.1s -webkit-transform cubic-bezier(0.07, 1.91, 0.1, 2.18);
-          transition: 0s background-color, 0.1s opacity, 0.1s transform cubic-bezier(0.07, 1.91, 0.1, 2.18);
+  transition: 0s background-color, 0.1s opacity, 0.1s -webkit-transform cubic-bezier(0.07, 1.91, 0.1, 2.18);
+  transition: 0s background-color, 0.1s opacity, 0.1s transform cubic-bezier(0.07, 1.91, 0.1, 2.18);
   background-color: #CB9877;
 }
 .timeline .timeline-wrapper .sample .step[data-id] .content.active {
-  -webkit-transition: 0s background-color, 0.01s opacity, 0.01s -webkit-transform;
-          transition: 0s background-color, 0.01s opacity, 0.01s transform;
+  transition: 0s background-color, 0.01s opacity, 0.01s -webkit-transform;
+  transition: 0s background-color, 0.01s opacity, 0.01s transform;
   background-color: red;
   -webkit-transform: scale(0.9);
           transform: scale(0.9);
@@ -539,8 +373,7 @@ h4 > span {
   padding: 0.5rem 0.5rem;
   font-size: 0.875rem;
   line-height: 1;
-  -webkit-transition: all 300ms ease;
-          transition: all 300ms ease;
+  transition: all 300ms ease;
   -webkit-transform: translateY(100%);
           transform: translateY(100%);
 }
@@ -664,8 +497,7 @@ h4 > span {
   background: black;
   font-size: 21px;
   padding: 5px 10px;
-  -webkit-transition: all 300ms ease;
-          transition: all 300ms ease;
+  transition: all 300ms ease;
 }
 .ui-toggle--share:hover {
   -webkit-animation: blink 150ms steps(2) infinite;
@@ -674,10 +506,8 @@ h4 > span {
 .visible--ui-share .ui-modal--share {
   height: 100%;
   opacity: 1;
-  -webkit-transition-duration: 250ms, 100ms;
-          transition-duration: 250ms, 100ms;
-  -webkit-transition-delay: 0ms, 0ms;
-          transition-delay: 0ms, 0ms;
+  transition-duration: 250ms, 100ms;
+  transition-delay: 0ms, 0ms;
 }
 .ui-modal--share .ui-modal-content {
   background: black;
@@ -913,14 +743,6 @@ h4 > span {
 .ui-modal--info .intro-top {
   color: black;
 }
-.ui-modal--info .intro-emicida-logo {
-  background-image: url('../img/emicida-logo-black.png');
-  position: fixed;
-}
-.ui-modal--info .intro-yasuke-logo {
-  background-image: url('../img/yasuke-logo-black.png');
-  position: fixed;
-}
 .ui-modal--info .ui-modal-content {
   font-family: 'New Rail Alphabet', monospace;
   font-weight: 100;
@@ -936,7 +758,7 @@ h4 > span {
   margin: 0;
   text-transform: none;
 }
-.ui-modal--info .ui-modal-content .yasuke-title {
+.ui-modal--info .ui-modal-content .ui-modal-content-title {
   font-family: 'Eurostile', monospace;
   font-size: 21px;
   margin-bottom: 70px;
@@ -990,10 +812,8 @@ h4 > span {
 .visible--ui-info .ui-modal--info {
   height: 100%;
   opacity: 1;
-  -webkit-transition-duration: 250ms, 100ms;
-          transition-duration: 250ms, 100ms;
-  -webkit-transition-delay: 0ms, 0ms;
-          transition-delay: 0ms, 0ms;
+  transition-duration: 250ms, 100ms;
+  transition-delay: 0ms, 0ms;
   overflow: auto;
 }
 .ui-modal--info .ui-modal-close--info {
@@ -1013,7 +833,7 @@ h4 > span {
     font-size: 20px;
     line-height: 1.4;
   }
-  .ui-modal--info .ui-modal-content .yasuke-title {
+  .ui-modal--info .ui-modal-content .ui-modal-content-title {
     margin: 20px -40px 20px;
   }
   .ui-modal--info .ui-modal-content .keys .key {
@@ -1026,19 +846,6 @@ h4 > span {
     margin-top: 20px;
     margin-bottom: 0;
     padding: 6px 15px 8px;
-  }
-  .ui-modal--info .ui-modal-content .credits-container {
-    margin-top: 30px;
-  }
-  .ui-modal--info .intro-emicida-logo {
-    background-size: 30px;
-    width: 30px;
-    height: 30px;
-  }
-  .ui-modal--info .intro-yasuke-logo {
-    background-size: 15px;
-    width: 15px;
-    height: 87px;
   }
   .visible--ui-info .ui-modal--info {
     padding-top: 20px;
@@ -1053,23 +860,17 @@ h4 > span {
   height: 0;
   overflow: hidden;
   opacity: 0;
-  -webkit-transition-property: opacity, bottom;
-          transition-property: opacity, bottom;
-  -webkit-transition-duration: 250ms, 100ms;
-          transition-duration: 250ms, 100ms;
-  -webkit-transition-delay: 0ms, 250ms;
-          transition-delay: 0ms, 250ms;
-  -webkit-transition-timing-function: ease;
-          transition-timing-function: ease;
+  transition-property: opacity, bottom;
+  transition-duration: 250ms, 100ms;
+  transition-delay: 0ms, 250ms;
+  transition-timing-function: ease;
 }
 .ui-modal:target,
 .ui-modal.visible {
   height: 100%;
   opacity: 1;
-  -webkit-transition-duration: 250ms, 100ms;
-          transition-duration: 250ms, 100ms;
-  -webkit-transition-delay: 0ms, 0ms;
-          transition-delay: 0ms, 0ms;
+  transition-duration: 250ms, 100ms;
+  transition-delay: 0ms, 0ms;
 }
 .ui-modal-content {
   display: block;

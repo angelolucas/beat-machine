@@ -59,10 +59,10 @@ var Ui = ( function() {
 		toggleControls();
 
 		// show info UI on first visit
-		if( !Cookies.get( 'yasuke--visited' ) && location.href.indexOf( 'demo' ) < 0 ) {
+		if( !Cookies.get( 'beat-machine--visited' ) && location.href.indexOf( 'demo' ) < 0 ) {
 			toggleModal( 'info' );
 		}
-		Cookies.set( 'yasuke--visited', true, { expires: 30, path: '' } );
+		Cookies.set( 'beat-machine--visited', true, { expires: 30, path: '' } );
 
 		bindEventHandlers();
 
@@ -90,9 +90,9 @@ var Ui = ( function() {
 
 				var id = $( this ).closest( settings.selector.modal.wrapper ).attr( 'data-modal' );
 				toggleModal( id );
-				
+
 				if( $( this ).is( settings.selector.share.toggle ) ) {
-					$( document ).trigger( 'ui/openShare', [{ 
+					$( document ).trigger( 'ui/openShare', [{
 						hash: Ui.getHash()
 					}] );
 				}
@@ -271,13 +271,13 @@ var Ui = ( function() {
 		}
 
 		$(settings.selector.share.setname)[0].oninput = function() {
-			
+
 			var name = $(this).val();
 
 			// check and delete character '@'
 			// because '@' is the delimiter of parameters
 			if ( name.slice(-1) === '@' ) {
-				
+
 				$(this).val( name.slice(0, -1) );
 
 				var name = $(this).val();
@@ -309,7 +309,7 @@ var Ui = ( function() {
 
 		if ( id.length > 0 ) {
 			settings.url.sequencerID = id;
-			
+
 		} else {
 			settings.url.sequencerID = '';
 
@@ -334,12 +334,12 @@ var Ui = ( function() {
 				parameters += 'n' + settings.url.name + '@';
 			}
 			if ( settings.url.sequencerID ) {
-				parameters += 's' + settings.url.sequencerID;	
+				parameters += 's' + settings.url.sequencerID;
 			}
 		}
 
 		settings.url.all = url + parameters;
-		
+
 		window.history.pushState('', '', '?');
 
 		//console.log(settings.url);
@@ -361,7 +361,7 @@ var Ui = ( function() {
 	var openShareWindow = function( service, url ) {
 		if( settings.shareServices[service] ) {
 			var url = settings.shareServices[service].url.replace( '{url}', url );
-			
+
 			window.open( url, '108Share', 'width=520,height=320,menubar=no,location=yes,resizable=no,scrollbars=yes,status=no' );
 		}
 	}
