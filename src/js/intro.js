@@ -12,10 +12,10 @@ var Intro = ( function() {
 		},
 		element: {},
 		isVisible: true,
-		duration: 4000,
+		duration: 100,
 		startTime: null,
 		time: null,
-		steps: 99,
+		steps: 100,
 		current: 0
 	}
 
@@ -84,7 +84,7 @@ var Intro = ( function() {
 
 				$( 'html' ).removeClass( 'visible--intro' );
 
-				
+
 			}, 1000 );
 		} );
 	}

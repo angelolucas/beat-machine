@@ -15,28 +15,28 @@ var Sequencer = ( function() {
 		},
 		samples: {
 			0: {
-				src:        'dist/samples/conga.mp3',
+				src:        'dist/samples/bass--8.mp3',
 				velocity:   4
 			},
 			1: {
-				src:        'dist/samples/palmas.mp3',
+				src:        'dist/samples/clap--3.mp3',
 				velocity:   4
 			},
 			2: {
-				src:        'dist/samples/hihat.mp3',
+				src:        'dist/samples/hi-hat--36.mp3',
 				velocity:   4
 			},
 			3:  {
-				src:        'dist/samples/kick1.mp3',
+				src:        'dist/samples/snare--43.mp3',
 				velocity:   4
 			},
 			4: {
-				src:        'dist/samples/kick2.mp3',
+				src:        'dist/samples/tom--1.mp3',
 				velocity:   4
 			},
-			
+
 			5: {
-				src:        'dist/samples/cora.mp3',
+				src:        'dist/samples/cymbal.mp3',
 				velocity:   4
 			},
 		},
@@ -91,10 +91,11 @@ var Sequencer = ( function() {
 					// samples
 					if( settings.keyboardKeys[key] !== undefined ) {
 						event.preventDefault();
-						
+
 						playSample( settings.keyboardKeys[key] );
 
-						if( settings.isRecording ) {
+						if( settings.isPlaying ) {
+							console.log(settings.isPlaying);
 							addSequenceItem( settings.keyboardKeys[key] );
 						}
 					}
@@ -170,7 +171,7 @@ var Sequencer = ( function() {
 				settings.introStop = true;
 
 				Tone.Transport.start();
-				
+
 				if( /iPhone|iPad/i.test(navigator.userAgent) === false ) {
 					startPlayback();
 				}
@@ -221,7 +222,7 @@ var Sequencer = ( function() {
 		for( var i = 0; i < Object.keys( settings.samples ).length; i++ ) {
 			samples[i] = settings.samples[i].src;
 		}
-		
+
 		settings.sampler = new Tone.MultiPlayer({
 			urls : samples
 		});
@@ -233,19 +234,14 @@ var Sequencer = ( function() {
 
 		if( settings.isLoaded ) {
 			var velocity = settings.samples[i].velocity;
-			
+
 			settings.sampler.start( i, time, 0, velocity);
 
 			$( document ).trigger( 'sequencer/playSample', [ {
 				sample: i
 			} ] );
 		}
-
-		if( !settings.isPlaying) {
-			startPlayback();
-		}
 	}
-
 
 	// Playback
 	var initPlayback = function() {
@@ -313,7 +309,7 @@ var Sequencer = ( function() {
 
 	var startPlayback = function() {
 		//Debug.log( 'Sequencer.startPlayback()' );
-		
+
 		settings.isPlaying = true;
 		$( document ).trigger( 'sequencer/startPlayback' );
 
@@ -329,7 +325,6 @@ var Sequencer = ( function() {
 		$( document ).trigger( 'sequencer/stopPlayback' );
 
 		settings.loop.stop();
-
 
 	}
 
@@ -353,13 +348,13 @@ var Sequencer = ( function() {
 
 		//Debug.log( 'step', step );
 		var pending = 1
-		
+
 		if ( !byTimeline ) {
 			pending = ( ( settings.division * settings.loop.progress ) < step ) ? 2 : 1;
 		}
-		
+
 		if( !settings.sequence[i][step] ) {
-			
+
 			settings.sequence[i][step] = pending;
 
 			settings.sampleId += 1;

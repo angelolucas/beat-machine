@@ -314,25 +314,8 @@ h4 > span {
   -webkit-transform: scale(0.8);
           transform: scale(0.8);
 }
-.timeline .timeline-wrapper .sample .step[data-sample="0"] .content {
-  background-image: url('../img/0.png');
-}
-.timeline .timeline-wrapper .sample .step[data-sample="1"] .content {
-  background-image: url('../img/1.png');
-}
-.timeline .timeline-wrapper .sample .step[data-sample="2"] .content {
-  background-image: url('../img/2.png');
-}
-.timeline .timeline-wrapper .sample .step[data-sample="3"] .content {
-  background-image: url('../img/3.png');
-}
-.timeline .timeline-wrapper .sample .step[data-sample="4"] .content {
-  background-image: url('../img/4.png');
-}
-.timeline .timeline-wrapper .sample .step[data-sample="5"] .content {
-  background-image: url('../img/5.png');
-}
 .timeline .timeline-wrapper .sample .step[data-id] .content {
+  background: green;
   opacity: 1;
   -webkit-transform: scale(1);
           transform: scale(1);

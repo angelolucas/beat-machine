@@ -196,7 +196,7 @@ var Timeline = ( function() {
 			if( settings.notes[i].step === step ) {
 
 				var selector = settings.selector.wrapper + ' .step[data-sample="' + sample + '"][data-step="' + step + '"] .content';
-				
+
 				$(selector).addClass('active');
 
 				setTimeout( function() {
@@ -205,27 +205,27 @@ var Timeline = ( function() {
 
 				/*
 				if ( Viewport.getWidth() > 768) {
-				
+
 					new TimelineLite()
-	                    .fromTo(
-	                        selector,
-	                        0.5,
-	                        {
-	                            transformOrigin: '50% 50%',
-	                            scaleX: 1.5,
-	                            scaleY: 1.5,
-	                            strokeOpacity: 0.75,
-	                            ease: Elastic.easeOut.config( 1, 0.3 )
-	                        },
-	                        {
-	                            transformOrigin: '50% 50%',
-	                            scaleX: 1,
-	                            scaleY: 1,
-	                            strokeOpacity: 1,
-	                            ease: Elastic.easeOut.config( 1, 0.3 )
-	                        }
-	                    );
-                 }*/
+            .fromTo(
+                selector,
+                0.5,
+                {
+                    transformOrigin: '50% 50%',
+                    scaleX: 1.5,
+                    scaleY: 1.5,
+                    strokeOpacity: 0.75,
+                    ease: Elastic.easeOut.config( 1, 0.3 )
+                },
+                {
+                    transformOrigin: '50% 50%',
+                    scaleX: 1,
+                    scaleY: 1,
+                    strokeOpacity: 1,
+                    ease: Elastic.easeOut.config( 1, 0.3 )
+                }
+            );
+       }*/
 			}
 		}
 	}
@@ -242,9 +242,9 @@ var Timeline = ( function() {
 		}
 
 		setTimeout ( function () {
-			setHeight();	
+			setHeight();
 		}, 50);
-		
+
 
 		$( window ).resize(function() {
 			setHeight();
