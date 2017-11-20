@@ -44,7 +44,6 @@ var Sequencer = ( function() {
 		division:      16,
 		isPlaying:     false,
 		backPlaying:   false,
-		isRecording:   true,
 		isLoaded:      false,
 		isMetronoming: false,
 		introStop:     false,
@@ -119,14 +118,12 @@ var Sequencer = ( function() {
 			} )
 			.on( 'ui/clickButton', function( event, data ) {
 
+
+
 				if( data.sample !== undefined ) {
 					var sample = data.sample;
 
 					playSample( sample );
-
-					if( settings.isRecording ) {
-						addSequenceItem( sample );
-					}
 				}
 
 				if( data.action ) {
@@ -478,22 +475,6 @@ var Sequencer = ( function() {
 		//Debug.log( 'Sequencer.buildDemoSequence()' );
 
 		addSequenceItem(0, 0);
-	}
-
-	// Recording
-	var startRecording = function() {
-		//Debug.log( 'Sequencer.startRecording()' );
-
-		settings.isRecording = true;
-		$( document ).trigger( 'sequencer/startRecording' );
-
-	}
-
-	var stopRecording = function() {
-		//Debug.log( 'Sequencer.stopRecording()' );
-
-		settings.isRecording = false;
-		$( document ).trigger( 'sequencer/stopRecording' );
 	}
 
 	// Metronome
