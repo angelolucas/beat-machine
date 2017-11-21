@@ -6,14 +6,11 @@ var Timeline = ( function() {
 
 	var settings = {
 		selector: {
-			wrapper: '.timeline-wrapper'
+			wrapper: '.timeline-wrapper',
+			runner: '.timeline-wrapper .runner',
 		},
 		notes: [],
-		svg: {},
-		svgLoaded: 0,
-		isLoaded: false,
-		zIndex: 0,
-		zIndexStep: 100
+		isLoaded: false
 	}
 
 	var init = function() {
@@ -30,12 +27,10 @@ var Timeline = ( function() {
 
 		height();
 	}
+	var globalID;
 
 	var bindEventHandlers = function() {
 		$( document )
-			.on( 'viewport/loop', function() {
-				onLoop();
-			} )
 			.on( 'timeline/loaded', function() {
 				settings.isLoaded = true;
 				run();
@@ -85,11 +80,13 @@ var Timeline = ( function() {
 				if( data.id ) {
 					removeNote( data.id );
 				}
+			} )
+			.on( 'sequencer/startPlayback', function() {
+				$(settings.selector.runner).removeClass('hide');
+			} )
+			.on( 'sequencer/stopPlayback', function() {
+				$(settings.selector.runner).addClass('hide');
 			} );
-	}
-
-	var onLoop = function() {
-		run();
 	}
 
 	var build = function() {
@@ -118,17 +115,17 @@ var Timeline = ( function() {
 	}
 
 	var run = function() {
-		var runner = $( settings.selector.wrapper + ' .runner' );
-		var progress = Sequencer.getProgress() * 100;
 
 		TweenLite.to(
-			runner,
+			settings.selector.runner,
 			0,
 			{
-				x: progress * 10 + "%",
+				x: Sequencer.getProgress() * 100 + "%",
 				ease: Linear.easeNone
 			}
 		);
+
+		requestAnimationFrame(run);
 	}
 
 	var addNote = function( step, sample, division, id ) {
@@ -166,7 +163,6 @@ var Timeline = ( function() {
 
 		// remove feedback
 		if( layer ) {
-
 			layer
 				.removeAttr('data-id')
 				.find('.content').empty();

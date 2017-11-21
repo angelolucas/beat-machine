@@ -117,9 +117,6 @@ var Sequencer = ( function() {
 				}
 			} )
 			.on( 'ui/clickButton', function( event, data ) {
-
-
-
 				if( data.sample !== undefined ) {
 					var sample = data.sample;
 

@@ -266,12 +266,18 @@ h4 > span {
       flex-flow: row wrap;
 }
 .timeline .timeline-wrapper .runner {
+  box-shadow: -28px 0 61px rgba(255, 0, 0, 0.15);
   border-left: 1px solid red;
   position: absolute;
   top: 0;
-  width: 10%;
+  width: 100%;
   left: 0;
   height: 100%;
+  z-index: 3;
+  pointer-events: none;
+}
+.timeline .timeline-wrapper .runner.hide {
+  display: none;
 }
 .timeline .timeline-wrapper .sample {
   display: -webkit-box;

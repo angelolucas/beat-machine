@@ -8,10 +8,7 @@ var Viewport = ( function() {
 		width: 0,
 		height: 0,
 		documentHeight: 0,
-		nowLoop: Date.now(),
-		visibility: true,
-		fps: ( 1000 / 60 ),
-
+		visibility: true
 	};
 
 	var init = function() {
@@ -22,8 +19,6 @@ var Viewport = ( function() {
 		onResizeFinish();
 
 		pageVisibility();
-
-		onLoop();
 	}
 
 	var bindEventHandlers = function() {
@@ -31,33 +26,6 @@ var Viewport = ( function() {
 			.on( 'viewport/resize/finish', function() {
                 onResizeFinish();
             } )
-	}
-
-	/**
-	* requestAnimationFrame loop throttled at 60fps
-	*/
-	var onLoop = function() {
-		requestAnimationFrame( onLoop );
-
-		var now = Date.now();
-		var elapsed = now - settings.nowLoop;
-
-		// the actual 'loop'
-		if( elapsed > settings.fps ) {
-			settings.nowLoop = now - ( elapsed % settings.fps );
-
-			$( document ).trigger( 'viewport/loop', [{ now: now }] );
-
-			// scrollTop
-			if( settings.scrollDetectionMode == 'requestAnimationFrame' ) {
-				settings._scrollTop = settings.scrollTop;
-				settings.scrollTop = settings.element.scrollTop();
-
-				if( settings.scrollTop != settings._scrollTop ) {
-					$( document ).trigger( 'viewport/scroll' );
-				}
-			}
-		}
 	}
 
 	var onResizeFinish = function() {
@@ -73,7 +41,7 @@ var Viewport = ( function() {
     	// Set the name of the hidden property and the change event for visibility
 		var hidden, visibilityChange;
 
-		if ( typeof document.hidden !== "undefined" ) { // Opera 12.10 and Firefox 18 and later support 
+		if ( typeof document.hidden !== "undefined" ) { // Opera 12.10 and Firefox 18 and later support
 			hidden = "hidden";
 			visibilityChange = "visibilitychange";
 		} else if ( typeof document.msHidden !== "undefined" ) {
@@ -92,7 +60,7 @@ var Viewport = ( function() {
 				}] );
 
 				settings.visibility = false;
-				
+
 			} else {
 
 				$( document ).trigger( 'viewport/visibility', [{
@@ -100,11 +68,11 @@ var Viewport = ( function() {
 				}] );
 
 				settings.visibility = true;
-				
+
 			}
 		}
 
-		 // Handle page visibility change   
+		 // Handle page visibility change
 		 document.addEventListener(visibilityChange, handleVisibilityChange, false);
     }
 
