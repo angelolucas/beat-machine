@@ -1,75 +1,74 @@
 /**
- * URL
- * modifies the page's hash
- */
+* URL
+* modifies the page's hash
+*/
 var Url = ( function() {
 
-	var settings = {
-		sequencerID: '',
-		name: ''
-	}
+  var settings = {
+    sequencerID: '',
+    name: ''
+  }
 
-	var init = function() {
-		//Debug.log( 'url.init()' );
+  var init = function() {
+    //Debug.log( 'url.init()' );
 
-		getParameters();
+    getParameters();
 
-		$( document ).trigger( 'url/init', [{ 
-			sequencerID: settings.sequencerID,
-			name: settings.name
-		}] );
-	}
+    $( document ).trigger( 'url/init', [{
+      sequencerID: settings.sequencerID,
+      name: settings.name
+    }] );
+  }
 
-	var getParameters = function() {
-		var delimiter = '@';
-		var delimiterEncoded = encodeURIComponent( delimiter );
+  var getParameters = function() {
+    var delimiter = '@';
+    var delimiterEncoded = encodeURIComponent( delimiter );
 
-		if ( location.search ) {
-			var parameters = location.search.substr( 1 );
-			var listParameters = [];
+    if ( location.search ) {
+      var parameters = location.search.substr( 1 );
+      var listParameters = [];
 
-			// put parameters in array
-			if ( parameters.indexOf( delimiter ) > 0 ) {
+      // put parameters in array
+      if ( parameters.indexOf( delimiter ) > 0 ) {
 
-				listParameters = parameters.split( delimiter );
+        listParameters = parameters.split( delimiter );
 
-			} else if ( parameters.indexOf( delimiterEncoded ) > 0 ) {
+      } else if ( parameters.indexOf( delimiterEncoded ) > 0 ) {
 
-				listParameters = parameters.split( delimiterEncoded );
+        listParameters = parameters.split( delimiterEncoded );
 
-			} else {
+      } else {
 
-				listParameters.push( parameters );
-			}
+        listParameters.push( parameters );
+      }
 
-			// set parameters
-			for ( i = 0; i < listParameters.length; i++ ) {
-				
-				if ( listParameters[i].substr( 0,1 ) == 'n' ) {
+      // set parameters
+      for ( i = 0; i < listParameters.length; i++ ) {
 
-					// decode
-					var decode = decodeURI(listParameters[i]);
+        if ( listParameters[i].substr( 0,1 ) == 'n' ) {
 
-					// change + by space
-					var decode = decode.replace(/\-/g, ' ');
+          // decode
+          var decode = decodeURI(listParameters[i]);
 
-					settings.name = decode.substr(1,13);
+          // change + by space
+          var decode = decode.replace(/\-/g, ' ');
 
-				} else if ( listParameters[i].substr( 0,1 ) === 's' ) {
+          settings.name = decode.substr(1,13);
 
-					settings.sequencerID = listParameters[i].substr(1);
+        } else if ( listParameters[i].substr( 0,1 ) === 's' ) {
 
-				}
-			}
-		}
-	}
+          settings.sequencerID = listParameters[i].substr(1);
 
-	return {
-		init: function() { init(); }
-	}
+        }
+      }
+    }
+  }
 
+  return {
+    init: function() { init(); }
+  }
 } )();
 
 $( document ).ready( function() {
-	Url.init();
+  Url.init();
 } );

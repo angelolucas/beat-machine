@@ -1,110 +1,110 @@
 /**
- * History
- * the history of added notes
- */
+* History
+* the history of added notes
+*/
 var History = ( function() {
 
-	var settings = {
-		maxLength: 32
-	}
+  var settings = {
+    maxLength: 32
+  }
 
-	var state = {
-		keyDown: false
-	}
+  var state = {
+    keyDown: false
+  }
 
-	var history = {};
+  var history = {};
 
-	var init = function() {
-		//Debug.log( 'History.init()' );
+  var init = function() {
+    //Debug.log( 'History.init()' );
 
-		bindEventHandlers();
+    bindEventHandlers();
 
-		$( document ).trigger( 'history/init' );
-	}
+    $( document ).trigger( 'history/init' );
+  }
 
-	var bindEventHandlers = function() {
-		$( document )
-			.on( 'sequencer/addSequenceItem', function( event, data ) {
-				addItem( data.step, data.sample, data.division, data.id );
-			} )
-			.on( 'ui/clickButton', function( event, data ) {
-				if( data.action === 'undo' ) {
-					undo();
-				}
-			} )
-			.on( 'keydown', function( event ) {
-				if( !state.keyDown ) {
-					state.keyDown = true;
-					var key = event.which;
+  var bindEventHandlers = function() {
+    $( document )
+    .on( 'sequencer/addSequenceItem', function( event, data ) {
+      addItem( data.step, data.sample, data.division, data.id );
+    } )
+    .on( 'ui/clickButton', function( event, data ) {
+      if( data.action === 'undo' ) {
+        undo();
+      }
+    } )
+    .on( 'keydown', function( event ) {
+      if( !state.keyDown ) {
+        state.keyDown = true;
+        var key = event.which;
 
-					var checkOverlay = $('html').is('.visible--ui-share, .visible--intro, .visible--ui-info');
+        var checkOverlay = $('html').is('.visible--ui-share, .visible--intro, .visible--ui-info');
 
-					// undo
-					// DELETE
-					if( key === 8 && checkOverlay === false ) {	
-						event.preventDefault();
+        // undo
+        // DELETE
+        if( key === 8 && checkOverlay === false ) {
+          event.preventDefault();
 
-						undo();
-					}
-				}
+          undo();
+        }
+      }
 
-			} )
-			.on( 'timeline/clickRemove', function( event, data ) {
-				undo( data.id );
-			} )
-			.on( 'keyup', function( event ) {
-				state.keyDown = false;
-			} )
-	}
+    } )
+    .on( 'timeline/clickRemove', function( event, data ) {
+      undo( data.id );
+    } )
+    .on( 'keyup', function( event ) {
+      state.keyDown = false;
+    } )
+  }
 
-	var addItem = function( step, sample, division, id ) {
-		//Debug.log( 'History.init()', id );
+  var addItem = function( step, sample, division, id ) {
+    //Debug.log( 'History.init()', id );
 
-		if( id ) {
-			if( history.length > 0 && Object.keys( history ).length > settings.maxLength - 1 ) {
-				history.shift();
-			}
+    if( id ) {
+      if( history.length > 0 && Object.keys( history ).length > settings.maxLength - 1 ) {
+        history.shift();
+      }
 
-			history[id] = {
-				step: step,
-				sample: sample,
-				division: division
-			};
-		}
+      history[id] = {
+        step: step,
+        sample: sample,
+        division: division
+      };
+    }
 
-		//Debug.log( history );
-	}
+    //Debug.log( history );
+  }
 
-	var undo = function( specificId ) {
-		//Debug.log( 'History.undo()' );
+  var undo = function( specificId ) {
+    //Debug.log( 'History.undo()' );
 
 
-		if ( specificId ) {
-			var item = history[specificId];
+    if ( specificId ) {
+      var item = history[specificId];
 
-			$( document ).trigger( 'history/undo', [{ step: item.step, sample: item.sample, division: item.division, id: specificId }] );
+      $( document ).trigger( 'history/undo', [{ step: item.step, sample: item.sample, division: item.division, id: specificId }] );
 
-			delete history[specificId];
+      delete history[specificId];
 
-			//Debug.log( history );
-		} else if( Object.keys( history ).length > 0 ) {
-			var id = Object.keys( history )[ ( Object.keys( history ).length - 1 ) ];
-			var item = history[id];
+      //Debug.log( history );
+    } else if( Object.keys( history ).length > 0 ) {
+      var id = Object.keys( history )[ ( Object.keys( history ).length - 1 ) ];
+      var item = history[id];
 
-			$( document ).trigger( 'history/undo', [{ step: item.step, sample: item.sample, division: item.division, id: id }] );
+      $( document ).trigger( 'history/undo', [{ step: item.step, sample: item.sample, division: item.division, id: id }] );
 
-			delete history[id];
+      delete history[id];
 
-			//Debug.log( history );
-		}
-	}
+      //Debug.log( history );
+    }
+  }
 
-	return {
-		init: function() { init(); }
-	}
+  return {
+    init: function() { init(); }
+  }
 
 } )();
 
 $( document ).ready( function() {
-	History.init();
+  History.init();
 } );

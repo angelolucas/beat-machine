@@ -1,265 +1,265 @@
 /**
- * Timeline
- * the circular sequence timeline
- */
+* Timeline
+* the circular sequence timeline
+*/
 var Timeline = ( function() {
 
-	var settings = {
-		selector: {
-			wrapper: '.timeline-wrapper',
-			runner: '.timeline-wrapper .runner',
-		},
-		notes: [],
-		isLoaded: false
-	}
+  var settings = {
+    selector: {
+      wrapper: '.timeline-wrapper',
+      runner: '.timeline-wrapper .runner',
+    },
+    notes: [],
+    isLoaded: false
+  }
 
-	var init = function() {
-		//Debug.log( 'Timeline.init()' );
+  var init = function() {
+    //Debug.log( 'Timeline.init()' );
 
-		bindEventHandlers();
+    bindEventHandlers();
 
-		build();
+    build();
 
-		$( document ).trigger( 'timeline/init' );
+    $( document ).trigger( 'timeline/init' );
 
-		$( 'html' )
-			.addClass( 'initiated--timeline' );
+    $( 'html' )
+    .addClass( 'initiated--timeline' );
 
-		height();
-	}
-	var globalID;
+    height();
+  }
+  var globalID;
 
-	var bindEventHandlers = function() {
-		$( document )
-			.on( 'timeline/loaded', function() {
-				settings.isLoaded = true;
-				run();
-			} )
-			.on( 'sequencer/addSequenceItem', function( event, data ) {
-				//Debug.log( data );
-				// wait for all SVGs to load before adding notes
-				var waiter = setInterval( function() {
-					if( settings.isLoaded ) {
-						clearInterval( waiter );
-						addNote( data.step, data.sample, data.division, data.id );
-					}
-				}, 50 );
-			} )
-			.on( 'mousedown touchstart', settings.selector.wrapper + ' .step' , function( event ) {
-				event.preventDefault();
+  var bindEventHandlers = function() {
+    $( document )
+    .on( 'timeline/loaded', function() {
+      settings.isLoaded = true;
+      run();
+    } )
+    .on( 'sequencer/addSequenceItem', function( event, data ) {
+      //Debug.log( data );
+      // wait for all SVGs to load before adding notes
+      var waiter = setInterval( function() {
+        if( settings.isLoaded ) {
+          clearInterval( waiter );
+          addNote( data.step, data.sample, data.division, data.id );
+        }
+      }, 50 );
+    } )
+    .on( 'mousedown touchstart', settings.selector.wrapper + ' .step' , function( event ) {
+      event.preventDefault();
 
-				var sample = $( this );
-				// crete note in step click
-				// exclude if exist
-				if( sample.attr('data-id') >= 0) {
-					var id = parseInt($(this).attr('data-id'));
-					removeNote(id);
+      var sample = $( this );
+      // crete note in step click
+      // exclude if exist
+      if( sample.attr('data-id') >= 0) {
+        var id = parseInt($(this).attr('data-id'));
+        removeNote(id);
 
-					$( document ).trigger( 'timeline/clickRemove', [{
-						id : id
-					}] );
-				}
-				// add if don't exist
-				else {
-					var sample = parseInt( $( this ).attr( 'data-sample' ) );
-					var step = parseInt( $( this ).attr( 'data-step' ) );
+        $( document ).trigger( 'timeline/clickRemove', [{
+          id : id
+        }] );
+      }
+      // add if don't exist
+      else {
+        var sample = parseInt( $( this ).attr( 'data-sample' ) );
+        var step = parseInt( $( this ).attr( 'data-step' ) );
 
-					$( document ).trigger( 'timeline/clickAdd', [{
-						sample: sample,
-						step: step
-					}] );
-				}
-			} )
-			.on( 'sequencer/playStep', function( event, data ) {
-				playNote( data.sample, data.step );
-			} )
-			.on( 'sequencer/clearSequence', function( event, data ) {
-				clearTimeline();
-			} )
-			.on( 'history/undo', function( event, data ) {
-				if( data.id ) {
-					removeNote( data.id );
-				}
-			} )
-			.on( 'sequencer/startPlayback', function() {
-				$(settings.selector.runner).removeClass('hide');
-			} )
-			.on( 'sequencer/stopPlayback', function() {
-				$(settings.selector.runner).addClass('hide');
-			} );
-	}
+        $( document ).trigger( 'timeline/clickAdd', [{
+          sample: sample,
+          step: step
+        }] );
+      }
+    } )
+    .on( 'sequencer/playStep', function( event, data ) {
+      playNote( data.sample, data.step );
+    } )
+    .on( 'sequencer/clearSequence', function( event, data ) {
+      clearTimeline();
+    } )
+    .on( 'history/undo', function( event, data ) {
+      if( data.id ) {
+        removeNote( data.id );
+      }
+    } )
+    .on( 'sequencer/startPlayback', function() {
+      $(settings.selector.runner).removeClass('hide');
+    } )
+    .on( 'sequencer/stopPlayback', function() {
+      $(settings.selector.runner).addClass('hide');
+    } );
+  }
 
-	var build = function() {
-		var sequencer = Sequencer.getDivision();
-		var samples = Object.keys(Sequencer.getSamples()).length;
+  var build = function() {
+    var sequencer = Sequencer.getDivision();
+    var samples = Object.keys(Sequencer.getSamples()).length;
 
-		// create runner
-		$(settings.selector.wrapper).append('<div class="runner"></div>');
+    // create runner
+    $(settings.selector.wrapper).append('<div class="runner"></div>');
 
-		// create sample rows
-		for( var key = 0; key < samples; key++ ) {
-			var sample = '<div class="sample" data-sample="' + key + '">';
+    // create sample rows
+    for( var key = 0; key < samples; key++ ) {
+      var sample = '<div class="sample" data-sample="' + key + '">';
 
-			$(settings.selector.wrapper).append(sample);
+      $(settings.selector.wrapper).append(sample);
 
-			// create step columns
-			for ( var i = 0; i < sequencer; i++ ) {
-				var step = '<div class="step" data-sample="' + key + '" data-step="' + i + '"><div class="content">';
+      // create step columns
+      for ( var i = 0; i < sequencer; i++ ) {
+        var step = '<div class="step" data-sample="' + key + '" data-step="' + i + '"><div class="content">';
 
-				$('.sample[data-sample=' + key + ']').append(step);
-			}
-		}
+        $('.sample[data-sample=' + key + ']').append(step);
+      }
+    }
 
-		// Loaded
-		$( document ).trigger( 'timeline/loaded' );
-	}
+    // Loaded
+    $( document ).trigger( 'timeline/loaded' );
+  }
 
-	var run = function() {
+  var run = function() {
 
-		TweenLite.to(
-			settings.selector.runner,
-			0,
-			{
-				x: Sequencer.getProgress() * 100 + "%",
-				ease: Linear.easeNone
-			}
-		);
+    TweenLite.to(
+      settings.selector.runner,
+      0,
+      {
+        x: Sequencer.getProgress() * 100 + "%",
+        ease: Linear.easeNone
+      }
+    );
 
-		requestAnimationFrame(run);
-	}
+    requestAnimationFrame(run);
+  }
 
-	var addNote = function( step, sample, division, id ) {
-		//Debug.log( 'Timeline.addNote()', step, sample, division, id );
+  var addNote = function( step, sample, division, id ) {
+    //Debug.log( 'Timeline.addNote()', step, sample, division, id );
 
-		var layer = $('.timeline-wrapper .sample[data-sample="' + sample + '"] .step[data-step="' + step + '"]');
-		var layerContent = $(layer).find('.content');
+    var layer = $('.timeline-wrapper .sample[data-sample="' + sample + '"] .step[data-step="' + step + '"]');
+    var layerContent = $(layer).find('.content');
 
-		// feedback
-		//$(layerContent).prepend(sample + '/' + step);
+    // feedback
+    //$(layerContent).prepend(sample + '/' + step);
 
-		var note = {
-			step: step,
-			sample: sample,
-			layer: layer,
-			id: id
-		}
+    var note = {
+      step: step,
+      sample: sample,
+      layer: layer,
+      id: id
+    }
 
-		settings.notes.push( note );
+    settings.notes.push( note );
 
-		layer.attr( 'data-id', id );
+    layer.attr( 'data-id', id );
 
-		$(layerContent).addClass('added');
+    $(layerContent).addClass('added');
 
-		setTimeout( function() {
-			$(layerContent).removeClass('added');
-		}, 138)
+    setTimeout( function() {
+      $(layerContent).removeClass('added');
+    }, 138)
 
-	}
+  }
 
-	var removeNote = function( id ) {
-		//Debug.log( 'Timeline.removeNote()', id );
+  var removeNote = function( id ) {
+    //Debug.log( 'Timeline.removeNote()', id );
 
-		var layer = $('.timeline-wrapper .step[data-id="' + id + '"]');
+    var layer = $('.timeline-wrapper .step[data-id="' + id + '"]');
 
-		// remove feedback
-		if( layer ) {
-			layer
-				.removeAttr('data-id')
-				.find('.content').empty();
-		}
+    // remove feedback
+    if( layer ) {
+      layer
+      .removeAttr('data-id')
+      .find('.content').empty();
+    }
 
-		// remove entry in settings.notes
-		for( var i = 0; i < settings.notes.length; i++ ) {
-			if( settings.notes[i].id == id ) {
-				settings.notes.splice( i, 1 );
-			}
-		}
-	}
+    // remove entry in settings.notes
+    for( var i = 0; i < settings.notes.length; i++ ) {
+      if( settings.notes[i].id == id ) {
+        settings.notes.splice( i, 1 );
+      }
+    }
+  }
 
-	var clearTimeline = function() {
-		//Debug.log( 'Timeline.clearTimeline()' );
+  var clearTimeline = function() {
+    //Debug.log( 'Timeline.clearTimeline()' );
 
-		settings.notes = [];
+    settings.notes = [];
 
-		$('.timeline-wrapper .step').removeAttr('data-id');
-		$('.timeline-wrapper .step .content').empty()
-	}
+    $('.timeline-wrapper .step').removeAttr('data-id');
+    $('.timeline-wrapper .step .content').empty()
+  }
 
-	var playNote = function( sample, step ) {
-		//Debug.log( 'Sequencer.playNote()', step );
+  var playNote = function( sample, step ) {
+    //Debug.log( 'Sequencer.playNote()', step );
 
-		for( var i = 0; i < settings.notes.length; i++ ) {
-			if( settings.notes[i].step === step ) {
+    for( var i = 0; i < settings.notes.length; i++ ) {
+      if( settings.notes[i].step === step ) {
 
-				var selector = settings.selector.wrapper + ' .step[data-sample="' + sample + '"][data-step="' + step + '"] .content';
+        var selector = settings.selector.wrapper + ' .step[data-sample="' + sample + '"][data-step="' + step + '"] .content';
 
-				$(selector).addClass('active');
+        $(selector).addClass('active');
 
-				setTimeout( function() {
-					$(selector).removeClass('active');
-				}, 138)
+        setTimeout( function() {
+          $(selector).removeClass('active');
+        }, 138)
 
-				/*
-				if ( Viewport.getWidth() > 768) {
+        /*
+        if ( Viewport.getWidth() > 768) {
 
-					new TimelineLite()
-            .fromTo(
-                selector,
-                0.5,
-                {
-                    transformOrigin: '50% 50%',
-                    scaleX: 1.5,
-                    scaleY: 1.5,
-                    strokeOpacity: 0.75,
-                    ease: Elastic.easeOut.config( 1, 0.3 )
-                },
-                {
-                    transformOrigin: '50% 50%',
-                    scaleX: 1,
-                    scaleY: 1,
-                    strokeOpacity: 1,
-                    ease: Elastic.easeOut.config( 1, 0.3 )
-                }
-            );
-       }*/
-			}
-		}
-	}
+        new TimelineLite()
+        .fromTo(
+        selector,
+        0.5,
+        {
+        transformOrigin: '50% 50%',
+        scaleX: 1.5,
+        scaleY: 1.5,
+        strokeOpacity: 0.75,
+        ease: Elastic.easeOut.config( 1, 0.3 )
+      },
+      {
+      transformOrigin: '50% 50%',
+      scaleX: 1,
+      scaleY: 1,
+      strokeOpacity: 1,
+      ease: Elastic.easeOut.config( 1, 0.3 )
+    }
+  );
+}*/
+}
+}
+}
 
-	var height = function() {
+var height = function() {
 
-		var setHeight = function() {
-			if ( $('html').hasClass('visible--ui-controls') ) {
-				var height = $('.ui--controls').outerHeight();
+  var setHeight = function() {
+    if ( $('html').hasClass('visible--ui-controls') ) {
+      var height = $('.ui--controls').outerHeight();
 
-				$('.timeline').attr('style', 'bottom:' + (height + 40) + 'px');
-				$('.ui-toggle--share').attr('style', 'bottom:' + height + 'px');
-			}
-		}
+      $('.timeline').attr('style', 'bottom:' + (height + 40) + 'px');
+      $('.ui-toggle--share').attr('style', 'bottom:' + height + 'px');
+    }
+  }
 
-		setTimeout ( function () {
-			setHeight();
-		}, 50);
+  setTimeout ( function () {
+    setHeight();
+  }, 50);
 
 
-		$( window ).resize(function() {
-			setHeight();
-		});
+  $( window ).resize(function() {
+    setHeight();
+  });
 
-	}
+}
 
-	// State
-	var isReady = function() {
-		return ( settings.isLoaded ) ? true : false;
-	}
+// State
+var isReady = function() {
+  return ( settings.isLoaded ) ? true : false;
+}
 
-	return {
-		init:       function() { init(); },
-		isReady:    function() { return isReady(); }
-	}
+return {
+  init:       function() { init(); },
+  isReady:    function() { return isReady(); }
+}
 
 } )();
 
 $( document ).ready( function() {
-	Timeline.init();
+  Timeline.init();
 } );

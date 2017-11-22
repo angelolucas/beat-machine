@@ -1,120 +1,120 @@
 /**
- * Intro
- * pseudo preloader
- */
+* Intro
+* pseudo preloader
+*/
 var Intro = ( function() {
 
-	var settings = {
-		selector: {
-			intro: '.intro',
-			title: '.intro-title',
-			loading: '.intro-loading-bar'
-		},
-		element: {},
-		isVisible: true,
-		duration: 100,
-		startTime: null,
-		time: null,
-		steps: 100,
-		current: 0
-	}
+  var settings = {
+    selector: {
+      intro: '.intro',
+      title: '.intro-title',
+      loading: '.intro-loading-bar'
+    },
+    element: {},
+    isVisible: true,
+    duration: 100,
+    startTime: null,
+    time: null,
+    steps: 100,
+    current: 0
+  }
 
-	var init = function() {
-		//Debug.log( 'Intro.init()' );
+  var init = function() {
+    //Debug.log( 'Intro.init()' );
 
-		settings.element.title = $( settings.selector.title );
-		settings.step = settings.duration / settings.steps;
+    settings.element.title = $( settings.selector.title );
+    settings.step = settings.duration / settings.steps;
 
-		bindEventHandlers();
+    bindEventHandlers();
 
-		$( document ).trigger( 'intro/init' );
+    $( document ).trigger( 'intro/init' );
 
-		start();
-	}
+    start();
+  }
 
-	var bindEventHandlers = function() {
-		$( document )
-			.on( 'viewport/loop', function() {
-				onLoop();
-			} );
-	}
+  var bindEventHandlers = function() {
+    $( document )
+    .on( 'viewport/loop', function() {
+      onLoop();
+    } );
+  }
 
-	var onLoop = function() {
+  var onLoop = function() {
 
-	}
+  }
 
-	var start = function() {
-		//Debug.log( 'Intro.start()' );
+  var start = function() {
+    //Debug.log( 'Intro.start()' );
 
-		settings.startTime = Date.now();
+    settings.startTime = Date.now();
 
-		settings.timer = setInterval( function() {
-			if( settings.isVisible ) {
-				if( settings.current < settings.steps ) {
-					countUp();
-				} else {
-					stop();
-				}
-			}
+    settings.timer = setInterval( function() {
+      if( settings.isVisible ) {
+        if( settings.current < settings.steps ) {
+          countUp();
+        } else {
+          stop();
+        }
+      }
 
-		}, settings.step );
-
-
-		$( 'html' )
-			.addClass( 'visible--intro' );
-
-		$( document ).trigger( 'intro/start' );
-	}
-
-	var stop = function() {
-		//Debug.log( 'Intro.stop()' );
-
-		settings.isVisible = false;
-
-		clearInterval( settings.timer );
-
-		waitForReady( function() {
-			$( document ).trigger( 'intro/stop' );
-
-			setTimeout( function() {
-				$( document )
-					.one( 'transitionend', settings.selector.intro, function() {
-						$( settings.selector.intro ).remove();
-					} );
-
-				$( 'html' ).removeClass( 'visible--intro' );
+    }, settings.step );
 
 
-			}, 1000 );
-		} );
-	}
+    $( 'html' )
+    .addClass( 'visible--intro' );
 
-	var countUp = function() {
-		settings.current = settings.current + 1;
-		settings.element.title.text( settings.current );
+    $( document ).trigger( 'intro/start' );
+  }
 
-		$(settings.selector.loading).attr('style', 'width:' + settings.current + '%')
-	}
+  var stop = function() {
+    //Debug.log( 'Intro.stop()' );
 
-	var waitForReady = function( callback ) {
-		if( Sequencer && Timeline ) {
-			settings.waiter = setInterval( function() {
-				//Debug.log( 'waiting...' );
+    settings.isVisible = false;
 
-				if( Sequencer.isReady() && Timeline.isReady() ) {
-					clearInterval( settings.waiter );
-					callback();
-				}
-			}, 100 );
-		}
-	}
+    clearInterval( settings.timer );
 
-	return {
-		init: function() { init(); }
-	}
+    waitForReady( function() {
+      $( document ).trigger( 'intro/stop' );
+
+      setTimeout( function() {
+        $( document )
+        .one( 'transitionend', settings.selector.intro, function() {
+          $( settings.selector.intro ).remove();
+        } );
+
+        $( 'html' ).removeClass( 'visible--intro' );
+
+
+      }, 1000 );
+    } );
+  }
+
+  var countUp = function() {
+    settings.current = settings.current + 1;
+    settings.element.title.text( settings.current );
+
+    $(settings.selector.loading).attr('style', 'width:' + settings.current + '%')
+  }
+
+  var waitForReady = function( callback ) {
+    if( Sequencer && Timeline ) {
+      settings.waiter = setInterval( function() {
+        //Debug.log( 'waiting...' );
+
+        if( Sequencer.isReady() && Timeline.isReady() ) {
+          clearInterval( settings.waiter );
+          callback();
+        }
+      }, 100 );
+    }
+  }
+
+  return {
+    init: function() { init(); }
+  }
 
 } )();
 
 $( document ).ready( function() {
-	Intro.init();
+  Intro.init();
 } );
