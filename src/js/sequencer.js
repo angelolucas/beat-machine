@@ -73,7 +73,7 @@ var Sequencer = ( function() {
       settings.isLoaded = true;
     } )
     .on( 'keydown', function( event ) {
-      var checkOverlay = $('html').is('.visible--ui-share, .visible--intro, .visible--ui-info');
+      var checkOverlay = $('html').is('.visible--ui-share, .visible--intro');
 
       if( checkOverlay === false ) {
         var key = event.which;

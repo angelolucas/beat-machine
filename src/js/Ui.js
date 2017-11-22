@@ -20,10 +20,6 @@ var Ui = ( function() {
         close:  '.ui-modal-close--share',
         link:   '.share-link'
       },
-      info: {
-        toggle: '.ui-toggle--info',
-        close:  '.ui-modal-close--info'
-      },
       modal: {
         wrapper: '[data-modal]',
         toggle:  '[data-modal-action="toggle"]'
@@ -31,8 +27,7 @@ var Ui = ( function() {
     },
     isVisible: {
       controls:   false,
-      share:      false,
-      info:       false
+      share:      false
     },
     shareServices: {
       facebook: {
@@ -57,12 +52,6 @@ var Ui = ( function() {
   var init = function() {
     // enable controls on touch devices
     toggleControls();
-
-    // show info UI on first visit
-    if( !Cookies.get( 'beat-machine--visited' ) && location.href.indexOf( 'demo' ) < 0 ) {
-      toggleModal( 'info' );
-    }
-    Cookies.set( 'beat-machine--visited', true, { expires: 30, path: '' } );
 
     bindEventHandlers();
 
@@ -310,7 +299,7 @@ var Ui = ( function() {
 
     } else {
       settings.url.sequencerID = '';
-      
+
     }
 
     setUrl();

@@ -37,7 +37,7 @@ var History = ( function() {
         state.keyDown = true;
         var key = event.which;
 
-        var checkOverlay = $('html').is('.visible--ui-share, .visible--intro, .visible--ui-info');
+        var checkOverlay = $('html').is('.visible--ui-share, .visible--intro');
 
         // undo
         // DELETE
