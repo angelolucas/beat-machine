@@ -15,7 +15,7 @@ var Intro = ( function() {
     duration: 100,
     startTime: null,
     time: null,
-    steps: 100,
+    steps: 0, // time to init
     current: 0
   }
 

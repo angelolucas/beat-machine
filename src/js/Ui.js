@@ -193,7 +193,6 @@ var Ui = ( function() {
     }
   }
 
-
   var toggleControls = function() {
     //Debug.log( 'Ui.toggleControls()' );
 
@@ -216,7 +215,6 @@ var Ui = ( function() {
 
     settings.isVisible.controls = !settings.isVisible.controls;
   }
-
 
   var setButton = function( key, state ) {
     //Debug.log( 'Ui.setButton()', key, state );
@@ -288,7 +286,6 @@ var Ui = ( function() {
 
       setUrl();
     };
-
   }
 
   var setSequencerID = function ( id ) {
@@ -306,11 +303,6 @@ var Ui = ( function() {
   }
 
   var setUrl = function( hash ) {
-
-    // random banner
-    var random = 'b' + (Math.round(Math.random() * 5) + 1) + '/';
-    settings.url.pathname = location.pathname + random;
-
     var url = settings.url.protocol + settings.url.hostname + settings.url.pathname;
     var parameters = '';
 
@@ -328,8 +320,6 @@ var Ui = ( function() {
     settings.url.all = url + parameters;
 
     window.history.pushState('', '', '?');
-
-    //console.log(settings.url);
 
     $( settings.selector.share.url ).val( settings.url.all );
 
