@@ -218,15 +218,22 @@ h4 > span {
   left: 0;
   margin: 5px 40px;
   top: 0;
-  right: 110px;
-  z-index: 101;
-}
-.title-container h1 {
-  display: inline-block;
-  margin: 0;
   font-weight: 400;
   line-height: 1;
   font-size: 21px;
+  text-transform: uppercase;
+  z-index: 101;
+}
+.username-container {
+  position: absolute;
+  right: 0;
+  margin: 5px 40px;
+  top: 0;
+  font-weight: 400;
+  line-height: 1;
+  font-size: 21px;
+  text-transform: uppercase;
+  z-index: 101;
 }
 @media screen and (max-width: 656px) {
   .title-container {
@@ -705,139 +712,6 @@ h4 > span {
   .ui-modal--share .ui-modal-content .footer-bar ul li .share-link {
     margin-bottom: 10px;
     width: 100%;
-  }
-}
-.ui-toggle--info {
-  position: absolute;
-  right: 0;
-  top: 0;
-  display: block;
-  margin: 5px 40px;
-  font-size: 70px;
-  line-height: 1;
-  text-transform: uppercase;
-  color: inherit;
-  background: black;
-  font-size: 21px;
-  padding: 5px 10px;
-  outline: none;
-}
-.ui-toggle--info:hover {
-  -webkit-animation: blink 150ms steps(2) infinite;
-          animation: blink 150ms steps(2) infinite;
-}
-.ui-modal--info {
-  background: white;
-}
-.ui-modal--info .intro-top {
-  color: black;
-}
-.ui-modal--info .ui-modal-content {
-  font-family: 'New Rail Alphabet', monospace;
-  font-weight: 100;
-  display: block;
-  margin: 20px 80px 40px;
-  font-size: 48px;
-  text-align: center;
-  line-height: 1.05;
-  max-width: none;
-  color: black;
-}
-.ui-modal--info .ui-modal-content p {
-  margin: 0;
-  text-transform: none;
-}
-.ui-modal--info .ui-modal-content .ui-modal-content-title {
-  font-family: 'Eurostile', monospace;
-  font-size: 21px;
-  margin-bottom: 70px;
-}
-.ui-modal--info .ui-modal-content .key {
-  font-family: 'Eurostile', monospace;
-  display: inline-block;
-  font-size: 40%;
-  border: 1px solid currentColor;
-  border-radius: 4px;
-  padding: 7px 9px 7px 9px;
-  text-transform: uppercase;
-  vertical-align: middle;
-  margin: 0 5px;
-  border-width: 2px;
-}
-.ui-modal--info .ui-modal-content button {
-  background: black;
-  color: white;
-  font-size: 21px;
-  margin-top: 70px;
-}
-.ui-modal--info .ui-modal-content .credits-container {
-  margin-top: 70px;
-  text-transform: none;
-}
-.ui-modal--info .ui-modal-content .credits-container .title {
-  border-bottom: 1px solid #d8d8d8;
-  display: inline-block;
-  min-width: 200px;
-  text-transform: none;
-}
-.ui-modal--info .ui-modal-content .credits-container ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-.ui-modal--info .ui-modal-content .credits-container ul li {
-  font-size: 14px;
-}
-.ui-modal--info .ui-modal-content .credits-container ul li a {
-  padding: 10px;
-  display: inline-block;
-}
-.ui-modal--info .ui-modal-content .credits-container ul li a:hover {
-  color: gray;
-}
-.ui-modal--info .ui-modal-content .credits-container ul li:last-child a {
-  padding-bottom: 0;
-}
-.visible--ui-info .ui-modal--info {
-  height: 100%;
-  opacity: 1;
-  transition-duration: 250ms, 100ms;
-  transition-delay: 0ms, 0ms;
-  overflow: auto;
-}
-.ui-modal--info .ui-modal-close--info {
-  color: black;
-}
-@media screen and (max-width: 656px) {
-  .ui-toggle--info {
-    font-size: 12px;
-    margin-right: 20px;
-  }
-}
-@media screen and (max-width: 480px) {
-  .ui-modal--info .ui-modal-content {
-    clear: both;
-    font-size: 30px;
-    margin: 20px 50px;
-    font-size: 20px;
-    line-height: 1.4;
-  }
-  .ui-modal--info .ui-modal-content .ui-modal-content-title {
-    margin: 20px -40px 20px;
-  }
-  .ui-modal--info .ui-modal-content .keys .key {
-    margin: 0;
-  }
-  .ui-modal--info .ui-modal-content .key {
-    padding: 5px 5px 4px 6px;
-  }
-  .ui-modal--info .ui-modal-content button {
-    margin-top: 20px;
-    margin-bottom: 0;
-    padding: 6px 15px 8px;
-  }
-  .visible--ui-info .ui-modal--info {
-    padding-top: 20px;
   }
 }
 .ui-modal {
