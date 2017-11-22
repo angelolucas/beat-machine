@@ -55,6 +55,8 @@ var Url = ( function() {
 
           settings.name = decode.substr(1,13);
 
+          $('html').addClass('shareable-name');
+
         } else if ( listParameters[i].substr( 0,1 ) === 's' ) {
 
           settings.sequencerID = listParameters[i].substr(1);

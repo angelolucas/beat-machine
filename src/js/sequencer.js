@@ -47,6 +47,7 @@ var Sequencer = ( function() {
     isLoaded:      false,
     isMetronoming: false,
     introStop:     false,
+    sequenceChanged: false,
     sequence:      [],
     lastStep:      0,
     timeLastStep:  0,
@@ -155,6 +156,11 @@ var Sequencer = ( function() {
     } )
     .on( 'sequencer/changeSequence', function() {
       saveSequence();
+
+      if ( settings.isLoaded && !settings.sequenceChanged) {
+        $('html').removeClass('shareable-name');
+        settings.sequenceChanged = true;
+      }
     } )
     .on( 'history/undo', function( event, data ) {
       if( data.id ) {

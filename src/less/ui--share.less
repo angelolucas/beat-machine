@@ -3,24 +3,27 @@
 	position: absolute;
 	left: 0;
 	bottom: 0;
-
-	display: block;
-
 	margin: 5px 40px;
-
-	font-size: 0.875rem;
 	line-height: 1;
 	text-transform: uppercase;
 	color: inherit;
-
-	background: black;
 	font-size: 21px;
 	padding: 5px 10px;
-
 	transition: all 300ms ease;
 
+	.with-name {
+		display: none;
+	}
 	&:hover {
 		.animation--blink;
+	}
+	html.shareable-name & {
+		.with-name {
+			display: block
+		}
+		.without-name {
+			display: none;
+		}
 	}
 }
 

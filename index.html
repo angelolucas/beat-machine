@@ -41,10 +41,6 @@
 		<!-- TITLE -->
 		<h1 class="title-container">BEAT MACHINE</h1>
 
-		<div class="username-container">
-			<span class="username"></span>
-		</div>
-
 		<!-- TIMELINE -->
 		<div class="timeline">
 			<div class="timeline-wrapper"></div>
@@ -96,8 +92,9 @@
 
 		<!-- UI SHARE -->
 		<div class="ui--share" data-modal="share">
-			<button type="button" class="ui-toggle ui-toggle--share" data-modal-action="toggle" onclick="ga('send', 'event', 'link','click', 'Share Page');">
-				share
+			<button class="ui-toggle ui-toggle--share" data-modal-action="toggle" onclick="ga('send', 'event', 'link','click', 'Share Page');" type="button">
+				<span class="without-name">share your song</span>
+				<span class="with-name">song by <span class="username"></span></span>
 			</button>
 
 			<div class="ui-modal ui-modal--share" id="share">

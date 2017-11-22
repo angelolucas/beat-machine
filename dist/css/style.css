@@ -213,17 +213,6 @@ h4 > span {
   text-transform: uppercase;
   z-index: 101;
 }
-.username-container {
-  position: absolute;
-  right: 0;
-  margin: 5px 40px;
-  top: 0;
-  font-weight: 400;
-  line-height: 1;
-  font-size: 21px;
-  text-transform: uppercase;
-  z-index: 101;
-}
 @media screen and (max-width: 656px) {
   .title-container {
     margin-left: 20px;
@@ -473,20 +462,26 @@ h4 > span {
   position: absolute;
   left: 0;
   bottom: 0;
-  display: block;
   margin: 5px 40px;
-  font-size: 0.875rem;
   line-height: 1;
   text-transform: uppercase;
   color: inherit;
-  background: black;
   font-size: 21px;
   padding: 5px 10px;
   transition: all 300ms ease;
 }
+.ui-toggle--share .with-name {
+  display: none;
+}
 .ui-toggle--share:hover {
   -webkit-animation: blink 150ms steps(2) infinite;
           animation: blink 150ms steps(2) infinite;
+}
+html.shareable-name .ui-toggle--share .with-name {
+  display: block;
+}
+html.shareable-name .ui-toggle--share .without-name {
+  display: none;
 }
 .visible--ui-share .ui-modal--share {
   height: 100%;
