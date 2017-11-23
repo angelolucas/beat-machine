@@ -107,14 +107,6 @@ var Sequencer = ( function() {
 
           togglePlayback();
         }
-
-        // clear sequence
-        // X
-        if( key === 88 ) {
-          event.preventDefault();
-
-          clearSequence();
-        }
       }
     } )
     .on( 'ui/clickButton', function( event, data ) {
@@ -129,10 +121,6 @@ var Sequencer = ( function() {
 
         if( action === 'play' ) {
           togglePlayback();
-        }
-
-        if( action === 'clear' ) {
-          clearSequence();
         }
 
         if( action === 'metronome' ) {
@@ -247,7 +235,15 @@ var Sequencer = ( function() {
   var initPlayback = function() {
     //Debug.log( 'Sequencer.initPlayback()' );
 
-    clearSequence();
+    // create sequence
+    for( var i = 0; i < Object.keys( settings.samples ).length; i++ ) {
+      var track = [];
+
+      for( var j = 0; j < settings.division; j++ ) {
+        track[j] = 0;
+      }
+      settings.sequence[i] = track;
+    }
 
     Tone.Transport.bpm.value = settings.bpm;
 
@@ -455,23 +451,6 @@ var Sequencer = ( function() {
         }
       }
     }
-  }
-
-  var clearSequence = function() {
-    //Debug.log( 'Sequencer.clearSequence()' );
-
-    // init sequence
-    for( var i = 0; i < Object.keys( settings.samples ).length; i++ ) {
-      var track = [];
-
-      for( var j = 0; j < settings.division; j++ ) {
-        track[j] = 0;
-      }
-      settings.sequence[i] = track;
-    }
-
-    $( document ).trigger( 'sequencer/clearSequence' );
-    $( document ).trigger( 'sequencer/changeSequence' );
   }
 
   var buildDemoSequence = function() {

@@ -73,9 +73,6 @@ var Timeline = ( function() {
     .on( 'sequencer/playStep', function( event, data ) {
       playNote( data.sample, data.step );
     } )
-    .on( 'sequencer/clearSequence', function( event, data ) {
-      clearTimeline();
-    } )
     .on( 'history/undo', function( event, data ) {
       if( data.id ) {
         removeNote( data.id );
@@ -174,15 +171,6 @@ var Timeline = ( function() {
         settings.notes.splice( i, 1 );
       }
     }
-  }
-
-  var clearTimeline = function() {
-    //Debug.log( 'Timeline.clearTimeline()' );
-
-    settings.notes = [];
-
-    $('.timeline-wrapper .step').removeAttr('data-id');
-    $('.timeline-wrapper .step .content').empty()
   }
 
   var playNote = function( sample, step ) {
