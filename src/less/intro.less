@@ -1,51 +1,51 @@
 .intro {
-	position: absolute;
-	left: 0;
-	right: 0;
-	top: 0;
-	bottom: 0;
-	opacity: 0;
-	background-color: @color--bg;
-	transition-duration: 750ms;
-	transition-property: opacity, transform;
-	transition-timing-function: ease;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  opacity: 0;
+  background-color: @color--bg;
+  transition-duration: 750ms;
+  transition-property: opacity, transform;
+  transition-timing-function: ease;
 
-	.visible--intro & {
-		z-index: 100;
-		opacity: 1;
-		transition: none;
-	}
+  .visible--intro & {
+    z-index: 100;
+    opacity: 1;
+    transition: none;
+  }
 }
 
 .intro-loading-bar {
-	transition: 0.4s width;
-	background: red;
-	top: 0;
-	position: absolute;
-	left: 0;
-	height: 5px;
+  transition: 0.4s width;
+  background: red;
+  top: 0;
+  position: absolute;
+  left: 0;
+  height: 5px;
 }
 
 .intro-title {
-	pointer-events: none;
-	position: absolute;
-	font-size: 115px;
-	top: 50%;
-	text-align: center;
-	width: 100%;
-	left: 0;
-	display: inline-block;
-	transform: translateY(-50%);
+  pointer-events: none;
+  position: absolute;
+  font-size: 115px;
+  top: 50%;
+  text-align: center;
+  width: 100%;
+  left: 0;
+  display: inline-block;
+  transform: translateY(-50%);
 }
 
 @media screen and ( max-width: 480px ) {
-	.intro {
-		&:after {
-			top: 20vh;
-		}
-	}
-	.intro-title {
-		font-size: 70px;
-		margin-top: 9vh;
-	}
+  .intro {
+    &:after {
+      top: 20vh;
+    }
+  }
+  .intro-title {
+    font-size: 70px;
+    margin-top: 9vh;
+  }
 }

@@ -1,183 +1,183 @@
 <!DOCTYPE html>
 <html class="no-js visible--intro" lang="pt">
-	<head>
-		<meta charset="utf-8">
-		<title>Beat Machine</title>
-		<script>
-			document.getElementsByTagName( 'html' )[0].className += ' js';
-			document.getElementsByTagName( 'html' )[0].className = document.getElementsByTagName( 'html' )[0].className.replace( 'no-js', '' );
-		</script>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-		<meta name="description" content="Aumente o volume e crie seu som. https://angelolucas.github.io/beat-machine/">
+<head>
+  <meta charset="utf-8">
+  <title>Beat Machine</title>
+  <script>
+  document.getElementsByTagName( 'html' )[0].className += ' js';
+  document.getElementsByTagName( 'html' )[0].className = document.getElementsByTagName( 'html' )[0].className.replace( 'no-js', '' );
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="description" content="Aumente o volume e crie seu som. https://angelolucas.github.io/beat-machine/">
 
-		<!-- CSS -->
-		<link type="text/css" rel="stylesheet" href="dist/css/style.css?">
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="dist/css/style.css?">
+  
+  <!-- FAVICON madness -->
+  <meta name="msapplication-TileColor" content="#000000">
+  <meta name="theme-color" content="#000000">
 
-		<!-- FAVICON madness -->
-		<meta name="msapplication-TileColor" content="#000000">
-		<meta name="theme-color" content="#000000">
+  <!-- FACEBOOK meta -->
+  <meta property="og:title" content="Beat Machine">
+  <meta property="og:url" content="https://angelolucas.github.io/beat-machine/">
+  <meta property="og:description" content="Aumente o volume e crie seu som. https://angelolucas.github.io/beat-machine/">
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:image" content="">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="840">
+  <meta property="og:image:height" content="630"> -->
 
-		<!-- FACEBOOK meta -->
-		<meta property="og:title" content="Beat Machine">
-		<meta property="og:url" content="https://angelolucas.github.io/beat-machine/">
-		<meta property="og:description" content="Aumente o volume e crie seu som. https://angelolucas.github.io/beat-machine/">
-		<meta property="og:type" content="website">
-		<!-- <meta property="og:image" content="">
-		<meta property="og:image:type" content="image/jpeg">
-		<meta property="og:image:width" content="840">
-		<meta property="og:image:height" content="630"> -->
+  <!-- TWITTER meta -->
+  <meta name="twitter:url" content="https://angelolucas.github.io/beat-machine/">
+  <meta name="twitter:title" content="Beat Machine">
+  <meta name="twitter:description" content="Aumente o volume e crie seu som. https://angelolucas.github.io/beat-machine/">
+  <!--<meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="">-->
 
-		<!-- TWITTER meta -->
-		<meta name="twitter:url" content="https://angelolucas.github.io/beat-machine/">
-		<meta name="twitter:title" content="Beat Machine">
-		<meta name="twitter:description" content="Aumente o volume e crie seu som. https://angelolucas.github.io/beat-machine/">
-		<!--<meta name="twitter:card" content="summary_large_image">
-		<meta name="twitter:image" content="">-->
+</head>
+<body id="body">
+  <div class="general">
 
-	</head>
-	<body id="body">
-		<div class="general">
+    <!-- TITLE -->
+    <h1 class="title-container">BEAT MACHINE</h1>
 
-		<!-- TITLE -->
-		<h1 class="title-container">BEAT MACHINE</h1>
+    <!-- TIMELINE -->
+    <div class="timeline">
+      <div class="timeline-wrapper"></div>
+    </div>
 
-		<!-- TIMELINE -->
-		<div class="timeline">
-			<div class="timeline-wrapper"></div>
-		</div>
+    <!-- CONTROLS -->
+    <div class="ui--controls">
+      <div class="button-row">
+        <button type="button" class="ui-toggle ui-toggle--controls" title="Toggle controls">
+          ctrl
+        </button>
 
-		<!-- CONTROLS -->
-		<div class="ui--controls">
-			<div class="button-row">
-				<button type="button" class="ui-toggle ui-toggle--controls" title="Toggle controls">
-					ctrl
-				</button>
+        <button type="button" class="control-button" data-sample="0" data-key="a" title="Play sample">
+          A
+        </button>
+        <button type="button" class="control-button" data-sample="1" data-key="s" title="Play sample">
+          S
+        </button>
+        <button type="button" class="control-button" data-sample="2" data-key="d" title="Play sample">
+          D
+        </button>
+        <button type="button" class="control-button" data-sample="3" data-key="f" title="Play sample">
+          F
+        </button>
+        <button type="button" class="control-button" data-sample="4" data-key="g" title="Play sample">
+          G
+        </button>
+        <button type="button" class="control-button" data-sample="5" data-key="h" title="Play sample">
+          H
+        </button>
 
-				<button type="button" class="control-button" data-sample="0" data-key="a" title="Play sample">
-					A
-				</button>
-				<button type="button" class="control-button" data-sample="1" data-key="s" title="Play sample">
-					S
-				</button>
-				<button type="button" class="control-button" data-sample="2" data-key="d" title="Play sample">
-					D
-				</button>
-				<button type="button" class="control-button" data-sample="3" data-key="f" title="Play sample">
-					F
-				</button>
-				<button type="button" class="control-button" data-sample="4" data-key="g" title="Play sample">
-					G
-				</button>
-				<button type="button" class="control-button" data-sample="5" data-key="h" title="Play sample">
-					H
-				</button>
+        <button type="button" class="control-button control-button--narrow control-button--no-feedback" data-key="z" data-action="undo" title="undo">
+          Z
+        </button>
 
-				<button type="button" class="control-button control-button--narrow control-button--no-feedback" data-key="z" data-action="undo" title="undo">
-					Z
-				</button>
+        <button type="button" class="control-button control-button--narrow control-button--no-feedback" data-key="q" data-action="clear" title="Clear loop">
+          DEL
+        </button>
 
-				<button type="button" class="control-button control-button--narrow control-button--no-feedback" data-key="q" data-action="clear" title="Clear loop">
-					DEL
-				</button>
+        <button type="button" class="control-button control-button--narrow control-button--no-feedback" data-key="shift" data-action="metronome" title="Toggle metronome">
+          SHIFT
+        </button>
 
-				<button type="button" class="control-button control-button--narrow control-button--no-feedback" data-key="shift" data-action="metronome" title="Toggle metronome">
-					SHIFT
-				</button>
+        <button type="button" class="control-button control-button--narrow control-button--no-feedback" data-key="space" data-action="play" title="play / pause">
+          SPACE
+        </button>
+      </div>
+    </div>
 
-				<button type="button" class="control-button control-button--narrow control-button--no-feedback" data-key="space" data-action="play" title="play / pause">
-					SPACE
-				</button>
-			</div>
-		</div>
+    <!-- UI SHARE -->
+    <div class="ui--share" data-modal="share">
+      <button class="ui-toggle ui-toggle--share" data-modal-action="toggle" onclick="ga('send', 'event', 'link','click', 'Share Page');" type="button">
+        <span class="without-name">share your song</span>
+        <span class="with-name">song by <span class="username"></span></span>
+      </button>
 
-		<!-- UI SHARE -->
-		<div class="ui--share" data-modal="share">
-			<button class="ui-toggle ui-toggle--share" data-modal-action="toggle" onclick="ga('send', 'event', 'link','click', 'Share Page');" type="button">
-				<span class="without-name">share your song</span>
-				<span class="with-name">song by <span class="username"></span></span>
-			</button>
+      <div class="ui-modal ui-modal--share" id="share">
+        <div class="ui-modal-content">
+          <div class="banner">
+            <span class="close-interface">X</span>
+            <button type="button" title="fechar" class="ui-modal-close ui-modal-close--share" data-modal-action="toggle">
+              fechar
+            </button>
+          </div>
+          <div class="footer-bar">
+            <ul>
+              <li class="share-name-input-container">
+                <input type="text" class="share-name-input" placeholder="Digite seu nome" maxlength="12">
+              </li>
+              <li class="share-url-container">
+                <div class="share-url">
+                  <input type="text" class="share-url-input" id="share-url-input" onclick="ga('send', 'event', 'link','click', 'Type name click');" readonly>
+                  <button type="button" class="share-url-button" data-clipboard-target="#share-url-input" onclick="ga('send', 'event', 'link','click', 'Copy URL');">
+                    copy
+                  </button>
+                </div>
+              </li>
+              <li>
+                <button type="button" class="share-link" data-service="facebook" onclick="ga('send', 'event', 'link','click', 'Share Facebook');">
+                  @Facebook
+                </button>
+                <button type="button" class="share-link" data-service="twitter" onclick="ga('send', 'event', 'link','click', 'Share Twitter');">
+                  @Twitter
+                </button>
+                <div class="share-whatsapp" style="display: none">
+                  <a class="share-link" data-action="share/whatsapp/share">
+                    @Whatsapp
+                  </a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
 
-			<div class="ui-modal ui-modal--share" id="share">
-				<div class="ui-modal-content">
-					<div class="banner">
-						<span class="close-interface">X</span>
-						<button type="button" title="fechar" class="ui-modal-close ui-modal-close--share" data-modal-action="toggle">
-							fechar
-						</button>
-					</div>
-					<div class="footer-bar">
-						<ul>
-							<li class="share-name-input-container">
-								<input type="text" class="share-name-input" placeholder="Digite seu nome" maxlength="12">
-							</li>
-							<li class="share-url-container">
-								<div class="share-url">
-									<input type="text" class="share-url-input" id="share-url-input" onclick="ga('send', 'event', 'link','click', 'Type name click');" readonly>
-									<button type="button" class="share-url-button" data-clipboard-target="#share-url-input" onclick="ga('send', 'event', 'link','click', 'Copy URL');">
-										copy
-									</button>
-								</div>
-							</li>
-							<li>
-								<button type="button" class="share-link" data-service="facebook" onclick="ga('send', 'event', 'link','click', 'Share Facebook');">
-									@Facebook
-								</button>
-								<button type="button" class="share-link" data-service="twitter" onclick="ga('send', 'event', 'link','click', 'Share Twitter');">
-									@Twitter
-								</button>
-								<div class="share-whatsapp" style="display: none">
-									<a class="share-link" data-action="share/whatsapp/share">
-										@Whatsapp
-									</a>
-								</div>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
+    <!-- INTRO -->
+    <div class="intro">
+      <div class="intro-loading-bar"></div>
+      <span class="intro-title">
+        0
+      </span>
+    </div>
+  </div>
 
-		<!-- INTRO -->
-		<div class="intro">
-			<div class="intro-loading-bar"></div>
-			<span class="intro-title">
-				0
-			</span>
-		</div>
-	</div>
+  <!-- JS -->
+  <script type="text/javascript" src="dist/js/dependencies.min.js"></script>
+  <!--<script type="text/javascript" src="dist/js/main.min.js"></script>-->
 
-	<!-- JS -->
-	<script type="text/javascript" src="dist/js/dependencies.min.js"></script>
-	<!--<script type="text/javascript" src="dist/js/main.min.js"></script>-->
+  <script type="text/javascript" src="src/js/debug.js?"></script>
+  <script type="text/javascript" src="src/js/viewport.js?"></script>
+  <script type="text/javascript" src="src/js/Ui.js?"></script>
+  <script type="text/javascript" src="src/js/sequencer.js?"></script>
+  <script type="text/javascript" src="src/js/history.js?"></script>
+  <script type="text/javascript" src="src/js/timeline.js?"></script>
+  <script type="text/javascript" src="src/js/url.js?"></script>
+  <script type="text/javascript" src="src/js/intro.js?"></script>
+  <script type="text/javascript" src="src/js/title.js?"></script>
 
-	<script type="text/javascript" src="src/js/debug.js?"></script>
-	<script type="text/javascript" src="src/js/viewport.js?"></script>
-	<script type="text/javascript" src="src/js/Ui.js?"></script>
-	<script type="text/javascript" src="src/js/sequencer.js?"></script>
-	<script type="text/javascript" src="src/js/history.js?"></script>
-	<script type="text/javascript" src="src/js/timeline.js?"></script>
-	<script type="text/javascript" src="src/js/url.js?"></script>
-	<script type="text/javascript" src="src/js/intro.js?"></script>
-	<script type="text/javascript" src="src/js/title.js?"></script>
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-	<script>
-	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-88109540-1', 'auto');
+  ga('send', 'pageview');
 
-	  ga('create', 'UA-88109540-1', 'auto');
-	  ga('send', 'pageview');
+  </script>
 
-	</script>
-
-	<!-- NO JS MESSAGE -->
-	<noscript>
-		<div class="ui-modal ui-modal--nojs visible">
-			<div class="ui-modal-content">
-				No Javascript, no music...
-			</div>
-		</div>
-	</noscript>
-	</body>
+  <!-- NO JS MESSAGE -->
+  <noscript>
+    <div class="ui-modal ui-modal--nojs visible">
+      <div class="ui-modal-content">
+        No Javascript, no music...
+      </div>
+    </div>
+  </noscript>
+</body>
 </html>

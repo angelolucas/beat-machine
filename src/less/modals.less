@@ -1,69 +1,69 @@
 .ui-modal {
-	position: absolute;
-	left: 0;
-	right: 0;
-	top: 0;
-	z-index: 1000;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 1000;
 
-	height: 0;
+  height: 0;
 
-	overflow: hidden;
+  overflow: hidden;
 
-	opacity: 0;
+  opacity: 0;
 
-	transition-property: opacity, bottom;
-	transition-duration: 250ms, 100ms;
-	transition-delay: 0ms, 250ms;
-	transition-timing-function: ease;
+  transition-property: opacity, bottom;
+  transition-duration: 250ms, 100ms;
+  transition-delay: 0ms, 250ms;
+  transition-timing-function: ease;
 
-	&:target,
-	&.visible {
-		height: 100%;
+  &:target,
+  &.visible {
+    height: 100%;
 
-		opacity: 1;
+    opacity: 1;
 
-		transition-duration: 250ms, 100ms;
-		transition-delay: 0ms, 0ms;
-	}
+    transition-duration: 250ms, 100ms;
+    transition-delay: 0ms, 0ms;
+  }
 }
 
 .ui-modal-content {
-	display: block;
+  display: block;
 
-	margin: 0;
+  margin: 0;
 
-	font-size: 0.875rem;
-	text-transform: uppercase;
-	text-align: center;
-	line-height: 1.75;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.75;
 
-	& > h4 {
-		margin: 2rem 0;
-	}
+  & > h4 {
+    margin: 2rem 0;
+  }
 }
 
 .ui-modal-close {
-	position: absolute;
-	right: 0;
-	top: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
 
-	display: block;
-	margin: 1rem;
+  display: block;
+  margin: 1rem;
 
-	font-size: 0.875rem;
-	text-transform: uppercase;
-	text-align: center;
-	line-height: 1;
-	color: inherit;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1;
+  color: inherit;
 
-	&:hover {
-		.animation--blink;
-	}
+  &:hover {
+    .animation--blink;
+  }
 }
 
 
 @media screen and ( max-height: 480px ) {
-	.ui-modal-content {
-		font-size: 0.75rem;
-	}
+  .ui-modal-content {
+    font-size: 0.75rem;
+  }
 }

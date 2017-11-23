@@ -1,25 +1,24 @@
 @keyframes rotating {
-	0% {
-		transform: rotate( 0deg );
-	}
+  0% {
+    transform: rotate( 0deg );
+  }
 
-	100% {
-		transform: rotate( 360deg );
-	}	
+  100% {
+    transform: rotate( 360deg );
+  }
 }
 
-
 @keyframes blink {
-	0% {
-		color: gray;
-	}
+  0% {
+    color: gray;
+  }
 
-	100% {
-		color: white;
-	}	
+  100% {
+    color: white;
+  }
 }
 
 // mixins
 .animation--blink {
-	animation: blink 150ms steps( 2 ) infinite;	
+  animation: blink 150ms steps( 2 ) infinite;
 }
